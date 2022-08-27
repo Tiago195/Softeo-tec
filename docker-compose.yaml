@@ -9,8 +9,7 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
 
   backend:
-    image: node:16
-    working_dir: /app/back-end
+    build: ./back-end
     ports:
       - 3001:3001
     volumes:
@@ -23,5 +22,6 @@ services:
       - HOST=softeo-tec_db_1
     depends_on:
       - db
+    stdin_open: true
     tty: true
-    command: bash -c "npm ci && npm run reset && npm run dev"
+    command: bash -c "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run dev"

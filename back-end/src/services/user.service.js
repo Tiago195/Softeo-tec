@@ -1,5 +1,9 @@
+const { User } = require('../database/models');
+
 module.exports = {
-  create: async () => {
-    console.log('its not implemented');
+  create: async (newUser) => {
+    const user = await User.create(newUser);
+
+    return user;
   }
 };
