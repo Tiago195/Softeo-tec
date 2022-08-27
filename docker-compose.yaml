@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+
+  backend:
+    image: node:16
+    working_dir: /app/back-end
+    ports:
+      - 3001:3001
+    volumes:
+      - ./back-end:/app/back-end
+    environment:
+      - PORT=3001
+      - USER_NAME=root
+      - PASSWORD=123456
+      - DATABASE=database_development
+      - HOST=softeo-tec_db_1
+    depends_on:
+      - db
+    tty: true
+    command: bash -c "npm ci && npm run reset && npm run dev"

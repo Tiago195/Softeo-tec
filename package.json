@@ -1,0 +1,21 @@
+{
+  "name": "softeo-tec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiago195/Softeo-tec.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tiago195/Softeo-tec/issues"
+  },
+  "homepage": "https://github.com/Tiago195/Softeo-tec#readme"
+}
