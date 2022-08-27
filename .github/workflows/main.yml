@@ -13,7 +13,7 @@ jobs:
           node-version: 16.16
 
       - name: instalando dependências
-        run: npm ci ./back-end
+        run: npm i ./back-end
 
       - name: executando o lint para verificar erros
         run: npx eslint ./back-end
