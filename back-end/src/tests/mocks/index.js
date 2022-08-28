@@ -7,7 +7,7 @@ const createMock = (instance, obj) => {
 };
 
 const userMock = {
-  create: async (obj) => createMock(users, obj),
+  create: async (obj) => createMock(users, obj)
 };
 
 module.exports = {
