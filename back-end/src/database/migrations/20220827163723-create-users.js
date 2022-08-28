@@ -10,6 +10,12 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
+      },
+      phone_number: {
+        type: Sequelize.STRING(11)
+      },
+      email: {
+        type: Sequelize.STRING
       }
     });
   },
