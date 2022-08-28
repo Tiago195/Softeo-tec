@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose up -d",
-    "stop": "docker-compose down"
+    "stop": "docker-compose down",
+    "restart": "docker-compose restart"
   },
   "repository": {
     "type": "git",

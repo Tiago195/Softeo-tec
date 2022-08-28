@@ -7,9 +7,13 @@
 
 module.exports = (Sequelize, dataTypes) => {
   const User = Sequelize.define('User', {
-    name: dataTypes.STRING
+    name: dataTypes.STRING,
+    phoneNumber: dataTypes.STRING(11),
+    email: dataTypes.STRING()
   }, {
-    timestamps: false
+    timestamps: false,
+    underscored: true,
+    tableName: 'Users'
   });
 
   User.associate = ({ Installment }) => {
