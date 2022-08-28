@@ -23,4 +23,4 @@ jobs:
     needs: [eslint]
     steps:
       - name: executando testes de integração
-        run: cd back-end && npm test
+        run: cd ./back-end && npm test
