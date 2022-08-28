@@ -56,7 +56,7 @@ describe('Testes de integração na rota de parcelas', () => {
     it('Caso de falha, porque usuario nao foi encontrado', async () => {
       installments = await chai.request(app).post(url).send(newInvalidInstallMentsTwo);
 
-      expect(installments).to.be.status(404);
+      expect(installments).to.be.status(403);
     });
   });
 });

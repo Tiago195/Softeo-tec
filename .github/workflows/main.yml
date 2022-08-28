@@ -18,5 +18,8 @@ jobs:
       - name: executando o lint para verificar erros
         run: npx eslint ./back-end
 
+  integrationTest:
+    runs-on: ubuntu-latest
+    steps:
       - name: executando testes de integração
         run: cd back-end && npm test
