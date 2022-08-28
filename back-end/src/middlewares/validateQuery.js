@@ -1,4 +1,4 @@
-const generateErros = require('../utils/generateErros');
+const generateErros = require('../utils/generateErrors');
 const status = require('http-status-codes').default;
 
 const validateQuery = (schema) => (req, res, next) => {

@@ -1,6 +1,6 @@
 const status = require('http-status-codes').default;
 
-const generateErros = require('../utils/generateErros');
+const generateErros = require('../utils/generateErrors');
 
 const validateBody = (schema) => (req, res, next) => {
   const { error } = schema.validate(req.body);
