@@ -6,7 +6,6 @@ const app = require('../index');
 const { User } = require('../database/models');
 const { userMock } = require('./mocks');
 const userWtihInstallments = require('./mocks/userWtihInstallments');
-// const jwt = require('../../utils/jwt');
 
 chai.use(chaiHttp);
 

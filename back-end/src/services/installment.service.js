@@ -7,6 +7,7 @@ const status = require('http-status-codes').default;
 module.exports = {
   create: async (newInstallment) => {
     const user = await await Installment.findOne({ userId: newInstallment.userId });
+    // console.log(user);
     if (!user) throw generateErrors('User not found', status.BAD_REQUEST);
 
     const bulkInstallments = generateBulkInstallments(newInstallment);
