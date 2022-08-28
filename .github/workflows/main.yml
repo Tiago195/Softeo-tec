@@ -17,3 +17,6 @@ jobs:
 
       - name: executando o lint para verificar erros
         run: npx eslint ./back-end
+
+      - name: executando testes de integração
+        run: cd back-end && npm test
