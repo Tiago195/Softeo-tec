@@ -19,6 +19,11 @@ describe('Testes de integração na rota de usuários', () => {
       phoneNumber: '12345678911',
       email: 'email@email.com'
     };
+    const newInvalidUser = {
+      name: 'sou invalid',
+      phoneNumber: '12345678911',
+      email: 'meuEmailéinvalido.com'
+    };
     let users;
 
     before(() => {
@@ -29,6 +34,11 @@ describe('Testes de integração na rota de usuários', () => {
       users = await chai.request(app).post(url).send(newValidUser);
       expect(users.body).to.be.eql({ ...newValidUser, id: 3 });
       expect(users).to.be.status(200);
+    });
+
+    it('Caso de falha', async () => {
+      users = await chai.request(app).post(url).send(newInvalidUser);
+      expect(users).to.be.status(400);
     });
   });
 });
