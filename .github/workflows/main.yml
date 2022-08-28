@@ -1,7 +1,7 @@
 on: [push, pull_request]
 
 jobs:
-  eslint:
+  aplicationTests:
     runs-on: ubuntu-latest
     steps:
       - name: Verifica o repositório Git
@@ -18,6 +18,6 @@ jobs:
       - name: executando o lint para verificar erros
         run: npx eslint ./back-end
 
-      - name: executando testes de integração
-        run: cd back-end && npm test
+      - name: executando testes de integração do back-end
+        run: npm run test:back-end
   
