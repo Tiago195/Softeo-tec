@@ -11,7 +11,14 @@ const schemaDate = joi.object({
   lt: joi.date().format('YYYY-MM-DD'),
 });
 
+const schemaNewInstallment = joi.object({
+  userId: joi.number().required(),
+  totalValue: joi.number().required(),
+  qtyInstallments: joi.number().min(1).max(10).required()
+});
+
 module.exports = {
   schemaNewUser,
-  schemaDate
+  schemaDate,
+  schemaNewInstallment
 };
