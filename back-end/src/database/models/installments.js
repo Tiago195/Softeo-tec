@@ -12,7 +12,8 @@ module.exports = (Sequelize, dataTypes) => {
     month: dataTypes.DATEONLY
   }, {
     timestamps: false,
-    underscored: true
+    underscored: true,
+    tableName: 'Installments'
   });
 
   Installments.associate = ({ User }) => {

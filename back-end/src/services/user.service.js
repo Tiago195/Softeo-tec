@@ -1,4 +1,7 @@
-const { User } = require('../database/models');
+const { User, Installment } = require('../database/models');
+const { Op } = require('sequelize');
+
+const currentDate = new Date(new Date().getFullYear(), new Date().getMonth());
 
 module.exports = {
   create: async (newUser) => {
@@ -7,13 +10,18 @@ module.exports = {
 
     return user;
   },
-  // getAll: async (innit, end) => {
-  //   const users = await User.findAll({
-  //     where: {
-  //       month:
-  //     }
-  //   });
+  getAll: async (gt = currentDate, lt) => {
+    const dateGT = new Date(gt);
+    const dateLT = new Date(lt);
 
-  //   return users;
-  // }
+    const users = await User.findAll({
+      include: {
+        model: Installment,
+        where: { month: { [Op.gte]: dateGT, [Op.lte]: dateLT } },
+        as: 'installments'
+      }
+    });
+
+    return users;
+  }
 };
