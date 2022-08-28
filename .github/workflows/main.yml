@@ -20,6 +20,7 @@ jobs:
 
   integrationTest:
     runs-on: ubuntu-latest
+    needs: [eslint]
     steps:
       - name: executando testes de integração
         run: cd back-end && npm test
