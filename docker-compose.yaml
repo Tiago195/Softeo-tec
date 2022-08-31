@@ -22,7 +22,16 @@ services:
       - HOST=softeo-tec_db_1
     depends_on:
       - db
-    # restart: on-failure
     stdin_open: true
     tty: true
     command: bash -c "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run dev"
+
+  frontend:
+    build: ./front-end
+    ports:
+      - 3000:3000
+    volumes:
+      - ./front-end:/app/front-end
+    depends_on:
+      - backend
+    command: bash -c "npm start"

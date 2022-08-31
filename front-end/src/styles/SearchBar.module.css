@@ -1,0 +1,12 @@
+.form_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form_gap {
+  gap: 10px;
+}
+
+.btn_search {
+  width: 100%;
+}
