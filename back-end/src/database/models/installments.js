@@ -9,7 +9,8 @@ module.exports = (Sequelize, dataTypes) => {
   const Installments = Sequelize.define('Installment', {
     userId: dataTypes.INTEGER,
     value: dataTypes.DECIMAL(12, 2),
-    month: dataTypes.DATEONLY
+    month: dataTypes.DATEONLY,
+    service: dataTypes.STRING
   }, {
     timestamps: false,
     underscored: true,

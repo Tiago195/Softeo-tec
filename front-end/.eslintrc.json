@@ -16,6 +16,9 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": [
+        "App.test.js"
+    ],
     "rules": {
         "indent": [
             "error",

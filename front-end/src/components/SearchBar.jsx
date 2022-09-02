@@ -5,8 +5,18 @@ import contextGlobal from '../Context/myContext';
 import style from '../styles/SearchBar.module.css';
 
 export default function SearchBar() {
-  const { searchBar, currency } = useContext(contextGlobal);
+  const { searchBar, currency, modal, type } = useContext(contextGlobal);
   const dates = `?gt=${searchBar.state.gt}&lt=${searchBar.state.lt}`;
+
+  const openModalNewClient = () => {
+    type.handleChange('user');
+    modal.setIsViewModal(!modal.isViewModal);
+  };
+
+  const openModalNewService = () => {
+    type.handleChange('installment');
+    modal.setIsViewModal(!modal.isViewModal);
+  };
 
   return (
     <Form className={`${style.form_container} ${style.form_gap}`}>
@@ -31,6 +41,14 @@ export default function SearchBar() {
       <Button onClick={() => searchBar.getAllUser(dates)} variant="primary" type="button" className={style.btn_search}>
         Pesquisar
       </Button>
+      <Row className={style.group_button}>
+        <Button onClick={openModalNewClient} as={Col} size="sm" type="button" >
+          novo cliente
+        </Button>
+        <Button onClick={openModalNewService} as={Col} size="sm" type="button" >
+          novo tratamento
+        </Button>
+      </Row>
     </Form>
   );
 }

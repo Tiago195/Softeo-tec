@@ -30,6 +30,10 @@ module.exports = {
       month: {
         type: Sequelize.DATEONLY,
         allowNull: false,
+      },
+      service: {
+        type: Sequelize.STRING,
+        allowNull: false
       }
     });
   },

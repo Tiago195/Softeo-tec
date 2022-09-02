@@ -5,6 +5,7 @@ module.exports = (newInstallment) => (
     .map((_el, index) => ({
       userId: newInstallment.userId,
       value: (newInstallment.totalValue / newInstallment.qtyInstallments).toFixed(2),
-      month: new Date(currentDate.getFullYear(), currentDate.getMonth() + index + 1, 5)
+      month: new Date(currentDate.getFullYear(), currentDate.getMonth() + index + 1, 5),
+      service: newInstallment.service
     }))
 );

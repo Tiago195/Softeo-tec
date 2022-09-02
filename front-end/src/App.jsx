@@ -1,16 +1,20 @@
-import { useContext } from "react";
+import { useContext } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchBar from "./components/SearchBar";
-import contextGlobal from "./Context/myContext";
-import TableInstallments from "./components/TableInstallments";
+import SearchBar from './components/SearchBar';
+import contextGlobal from './Context/myContext';
+import TableInstallments from './components/TableInstallments';
+import ModalAddCliente from './components/ModalAddCliente';
 
 function App() {
-  const store = useContext(contextGlobal);
-  // console.log(store);
+  const { modal, type } = useContext(contextGlobal);
+
   return (
     <div>
-      <SearchBar />
-      <TableInstallments />
+      {modal.isViewModal
+        ? (<ModalAddCliente type={type.state} />)
+        : (<><SearchBar /><TableInstallments /></>)
+      }
     </div>
   );
 }
