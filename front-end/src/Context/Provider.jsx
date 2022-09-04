@@ -2,13 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import instance from '../axios';
-import formaterCurrency from '../utils/formaterCurrency';
 import Context from './myContext';
+import getTotalValue from '../utils/getTotalValue';
+import getPartialValue from '../utils/getPartialValue';
 
 const innitStateSearchBar = {
   name: '',
   gt: new Date().toLocaleDateString('en-CA'),
-  lt: '',
+  lt: new Date(new Date().getFullYear(), 11, 31).toLocaleDateString('en-CA'),
 };
 
 const innitStateNewCliente = {
@@ -20,22 +21,37 @@ const innitStateNewCliente = {
   service: ''
 };
 
+const innitSateInstallment = {
+  name: '',
+  service: '',
+  month: '',
+  isPaid: '',
+};
+
 export default function Provider({ children }) {
   const [user, setUser] = useState([]);
   const [searchBarState, setSearchBarState] = useState(innitStateSearchBar);
   const [isViewModal, setIsViewModal] = useState(false);
+  const [isViewModalInfo, setIsViewModalInfo] = useState(false);
+  const [installment, setInstallment] = useState(innitSateInstallment);
+  const [currency, setCurrency] = useState({ totalValue: 0, value: 0 });
+
   const [newClienteState, setNewClienteState] = useState(innitStateNewCliente);
   const [typeModal, setTypeModal] = useState('user');
 
-  const value = user.reduce((a, b) => a + +b.installments.reduce((a, b) => +a + +b.value, 0), 0);
-  const currency = formaterCurrency(value);
-
-  const getAllUser = (parameter = '') => {
-    instance.get(`/user/${parameter}`)
-      .then(({ data }) => setUser(data));
+  const getAllUser = async (parameter = '') => {
+    const { data } = await instance.get(`/user/${parameter}`);
+    setUser(data);
+    setCurrency({
+      totalValue: getTotalValue(data),
+      value: getPartialValue(data),
+    });
+    return data;
   };
 
-  useEffect(getAllUser, []);
+  useEffect(() => {
+    getAllUser(`?gt=${searchBarState.gt}&lt=${searchBarState.lt}`);
+  }, []);
 
   const handleChangeSearchBar = ({ target }) => {
     setSearchBarState(old => ({ ...old, [target.name]: target.value }));
@@ -45,8 +61,12 @@ export default function Provider({ children }) {
     setNewClienteState(old => ({ ...old, [target.name]: target.value }));
   };
 
+  const resetClientState = () => {
+    setNewClienteState(innitStateNewCliente);
+  };
+
   const store = {
-    user,
+    user, setUser,
     searchBar: {
       state: searchBarState,
       handleChange: handleChangeSearchBar,
@@ -54,14 +74,17 @@ export default function Provider({ children }) {
     },
     newCliente: {
       state: newClienteState,
-      handleChange: handleChangeNewCliente
+      handleChange: handleChangeNewCliente,
+      reset: resetClientState
     },
-    currency,
+    currency, setCurrency,
     modal: { isViewModal, setIsViewModal },
+    infoModal: { isViewModalInfo, setIsViewModalInfo },
     type: {
       state: typeModal,
       handleChange: setTypeModal
-    }
+    },
+    installment, setInstallment
   };
 
   return (

@@ -9,10 +9,10 @@ import formaterCurrency from '../utils/formaterCurrency';
 
 export default function ModalAddCliente({ type = 'user' }) {
   const { newCliente, modal, searchBar, user } = useContext(contextGlobal);
-  const { state, handleChange } = newCliente;
-  const [userId, setUserId] = useState(user[0].id);
+  const { state, handleChange, reset } = newCliente;
+  const [userId, setUserId] = useState(user[0]?.id || 1);
 
-  const onClick = async () => {
+  const newUser = async () => {
     const payload = type === 'user' ? state : {
       userId,
       totalValue: state.totalValue,
@@ -21,6 +21,12 @@ export default function ModalAddCliente({ type = 'user' }) {
     };
     await instance.post(`/${type}/create`, payload);
     await searchBar.getAllUser();
+    modal.setIsViewModal(!modal.isViewModal);
+  };
+
+  const closeModel = () => {
+    reset();
+    console.log(state);
     modal.setIsViewModal(!modal.isViewModal);
   };
 
@@ -33,15 +39,15 @@ export default function ModalAddCliente({ type = 'user' }) {
               <>
                 <Form.Group>
                   <Form.Label>Nome do cliente</Form.Label>
-                  <Form.Control name="name" onChange={handleChange} />
+                  <Form.Control value={state.name} name="name" onChange={handleChange} />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Numero de telefone</Form.Label>
-                  <Form.Control name="phoneNumber" onChange={handleChange} />
+                  <Form.Control value={state.phoneNumber} name="phoneNumber" onChange={handleChange} />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Email</Form.Label>
-                  <Form.Control name="email" onChange={handleChange} />
+                  <Form.Control value={state.email} name="email" onChange={handleChange} />
                 </Form.Group>
               </>
             )
@@ -59,16 +65,16 @@ export default function ModalAddCliente({ type = 'user' }) {
         <Row>
           <Form.Group as={Col}>
             <Form.Label>Procedimento</Form.Label>
-            <Form.Control name="service" onChange={handleChange} />
+            <Form.Control value={state.service} name="service" onChange={handleChange} />
           </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>Valor total a pagar</Form.Label>
-            <Form.Control type="number" name="totalValue" onChange={handleChange} />
+            <Form.Control value={state.totalValue} type="number" name="totalValue" onChange={handleChange} />
           </Form.Group>
         </Row>
         <Form.Group>
           <Form.Label>Parcelas</Form.Label>
-          <Form.Select onChange={handleChange} name="qtyInstallments">
+          <Form.Select value={state.qtyInstallments} onChange={handleChange} name="qtyInstallments">
             <option value="1">1x sem juros - {formaterCurrency(state.totalValue / 1)}</option>
             <option value="2">2x sem juros - {formaterCurrency(state.totalValue / 2)}</option>
             <option value="3">3x sem juros - {formaterCurrency(state.totalValue / 3)}</option>
@@ -78,10 +84,10 @@ export default function ModalAddCliente({ type = 'user' }) {
         </Form.Group>
       </Form>
       <Row className={style.group_button}>
-        <Button onClick={() => modal.setIsViewModal(!modal.isViewModal)} variant="secondary" as={Col} size="sm" type="button" >
+        <Button onClick={closeModel} variant="outline-secondary" as={Col} size="sm" type="button" >
           Cancelar
         </Button>
-        <Button onClick={onClick} as={Col} size="sm" type="button" >
+        <Button onClick={newUser} as={Col} size="sm" type="button" >
           Criar
         </Button>
       </Row>

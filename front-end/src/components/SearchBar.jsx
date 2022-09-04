@@ -10,12 +10,12 @@ export default function SearchBar() {
 
   const openModalNewClient = () => {
     type.handleChange('user');
-    modal.setIsViewModal(!modal.isViewModal);
+    modal.setIsViewModal(true);
   };
 
   const openModalNewService = () => {
     type.handleChange('installment');
-    modal.setIsViewModal(!modal.isViewModal);
+    modal.setIsViewModal(true);
   };
 
   return (
@@ -36,16 +36,18 @@ export default function SearchBar() {
         </Form.Group>
       </Row>
       <Form.Text>
-        Valor nesse periodo: <span style={{ color: '#5c940d' }}>{currency}</span>
+        Valor total a receber nesse periodo: <span style={{ color: '#940d0d' }}>{currency.totalValue}</span>
+        <br />
+        Valor ja recebido nesse periodo: <span style={{ color: '#5c940d' }}>{currency.value}</span>
       </Form.Text>
       <Button onClick={() => searchBar.getAllUser(dates)} variant="primary" type="button" className={style.btn_search}>
         Pesquisar
       </Button>
       <Row className={style.group_button}>
-        <Button onClick={openModalNewClient} as={Col} size="sm" type="button" >
+        <Button onClick={openModalNewClient} variant={type.state === 'user' ? 'primary' : 'outline-secondary'} as={Col} size="sm" type="button" >
           novo cliente
         </Button>
-        <Button onClick={openModalNewService} as={Col} size="sm" type="button" >
+        <Button onClick={openModalNewService} variant={type.state === 'installment' ? 'primary' : 'outline-secondary'} as={Col} size="sm" type="button" >
           novo tratamento
         </Button>
       </Row>

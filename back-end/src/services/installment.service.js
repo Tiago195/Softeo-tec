@@ -15,4 +15,11 @@ module.exports = {
 
     return installments;
   },
+  paid: async (id) => {
+    const installment = await Installment.findByPk(id);
+
+    if (!installment) throw generateErrors('Installment not found', status.NOT_FOUND);
+
+    await Installment.update({ isPaid: 1 }, { where: { id } });
+  }
 };

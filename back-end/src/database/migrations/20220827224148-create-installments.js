@@ -34,6 +34,10 @@ module.exports = {
       service: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      is_paid: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 0
       }
     });
   },

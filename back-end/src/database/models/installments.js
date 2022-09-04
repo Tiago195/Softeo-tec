@@ -10,7 +10,8 @@ module.exports = (Sequelize, dataTypes) => {
     userId: dataTypes.INTEGER,
     value: dataTypes.DECIMAL(12, 2),
     month: dataTypes.DATEONLY,
-    service: dataTypes.STRING
+    service: dataTypes.STRING,
+    isPaid: dataTypes.BOOLEAN
   }, {
     timestamps: false,
     underscored: true,
