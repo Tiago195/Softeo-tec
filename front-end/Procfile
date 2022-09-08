@@ -1,1 +1,1 @@
-web: cd front-end && react-scripts start
+web: cd front-end && npm start
