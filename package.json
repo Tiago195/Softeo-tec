@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose up -d",
+    "start": "cd back-end && npm start",
     "stop": "docker-compose down",
     "restart": "docker-compose restart",
     "test:back-end": "cd ./back-end && npm test",
