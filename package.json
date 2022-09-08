@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose up -d",
+    "start": "postinstall",
     "stop": "docker-compose down",
     "restart": "docker-compose restart",
-    "test:back-end": "cd ./back-end && npm test"
+    "test:back-end": "cd ./back-end && npm test",
+    "postinstall": "if [ $CLIENT_ENV ]; then npm run postinstall-client; elif [ $SERVER_ENV ]; then npm run postinstall-server; else echo no environment detected, please set CLIENT_ENV or SERVER_ENV; fi",
+    "postinstall-client": "cd front-end && npm install && npm run build",
+    "postinstall-server": "cd back-end && npm install"
   },
   "repository": {
     "type": "git",

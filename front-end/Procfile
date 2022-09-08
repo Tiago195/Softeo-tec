@@ -1,0 +1,1 @@
+web: cd front-end && react-scripts start
