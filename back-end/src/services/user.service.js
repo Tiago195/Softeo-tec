@@ -2,7 +2,7 @@ const { User, Installment } = require('../database/models');
 const installmentsService = require('./installment.service');
 const { Op } = require('sequelize');
 
-const currentDate = new Date(new Date().getFullYear(), new Date().getMonth());
+// const currentDate = new Date(new Date().getFullYear(), new Date().getMonth());
 
 module.exports = {
   create: async (newUser) => {
@@ -18,7 +18,7 @@ module.exports = {
     return response;
   },
 
-  getAll: async (gt = currentDate, lt) => {
+  getAll: async (gt = new Date(), lt = new Date(new Date().getFullYear(), 11, 31)) => {
     const dateGT = new Date(gt);
     const dateLT = new Date(lt);
 
