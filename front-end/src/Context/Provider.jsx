@@ -12,15 +12,6 @@ const innitStateSearchBar = {
   lt: new Date(new Date().getFullYear(), 11, 31).toLocaleDateString('en-CA'),
 };
 
-const innitStateNewCliente = {
-  totalValue: 0,
-  qtyInstallments: 1,
-  name: '',
-  email: '',
-  phoneNumber: '',
-  service: ''
-};
-
 const innitSateInstallment = {
   name: '',
   service: '',
@@ -36,7 +27,6 @@ export default function Provider({ children }) {
   const [installment, setInstallment] = useState(innitSateInstallment);
   const [currency, setCurrency] = useState({ totalValue: 0, value: 0 });
 
-  const [newClienteState, setNewClienteState] = useState(innitStateNewCliente);
   const [typeModal, setTypeModal] = useState('user');
 
   const getAllUser = async (parameter = '') => {
@@ -57,25 +47,12 @@ export default function Provider({ children }) {
     setSearchBarState(old => ({ ...old, [target.name]: target.value }));
   };
 
-  const handleChangeNewCliente = ({ target }) => {
-    setNewClienteState(old => ({ ...old, [target.name]: target.value }));
-  };
-
-  const resetClientState = () => {
-    setNewClienteState(innitStateNewCliente);
-  };
-
   const store = {
     user, setUser,
     searchBar: {
       state: searchBarState,
       handleChange: handleChangeSearchBar,
       getAllUser
-    },
-    newCliente: {
-      state: newClienteState,
-      handleChange: handleChangeNewCliente,
-      reset: resetClientState
     },
     currency, setCurrency,
     modal: { isViewModal, setIsViewModal },

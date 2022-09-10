@@ -6,10 +6,22 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:react/jsx-runtime"
     ],
-    "overrides": [],
+    "overrides": [
+        {
+            "files": [
+                "*.jsx",
+                "*.js"
+            ]
+        }
+    ],
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
@@ -24,6 +36,8 @@
             "error",
             2
         ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
         "linebreak-style": [
             "error",
             "unix"
@@ -39,5 +53,10 @@
         "react/prop-types": [
             0
         ]
+    },
+    "settings": {
+        "react": {
+            "version": "^18.2.0"
+        }
     }
 }

@@ -15,9 +15,12 @@ jobs:
       - name: instalando dependências
         run: npm i ./back-end
 
-      - name: executando o lint para verificar erros
+      - name: executando o lint para verificar os erros do back
         run: npx eslint ./back-end
 
+      - name: executando o lint para verificar os erros do front
+        run: npm eslint ./front-end
+        
       - name: executando testes de integração do back-end
         run: npm run test:back-end
   

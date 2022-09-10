@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from './components/SearchBar';
 import contextGlobal from './Context/myContext';
@@ -9,7 +8,6 @@ import ModalInfoCliente from './components/ModalInfoCliente';
 
 function App() {
   const { modal, type } = useContext(contextGlobal);
-  // console.log(modal.isViewModal);
   return (
     <div className='main_container'>
       <ModalInfoCliente />

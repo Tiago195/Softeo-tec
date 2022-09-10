@@ -17,17 +17,20 @@ describe('Testes de integração na rota de parcelas', () => {
     const newValidInstallMents = {
       userId: 2,
       totalValue: 150,
-      qtyInstallments: 3
+      qtyInstallments: 3,
+      service: 'serviço'
     };
     const newInvalidInstallMentsOne = {
       userId: 2,
       totalValue: 150,
-      qtyInstallments: 11
+      qtyInstallments: 11,
+      service: 'serviço'
     };
     const newInvalidInstallMentsTwo = {
       userId: -1,
       totalValue: 150,
-      qtyInstallments: 3
+      qtyInstallments: 3,
+      service: 'serviço'
     };
     before(() => {
       sinon.stub(User, 'findByPk')
