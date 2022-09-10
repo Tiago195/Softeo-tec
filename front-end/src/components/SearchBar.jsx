@@ -22,7 +22,7 @@ export default function SearchBar() {
     <Form className={`${style.form_container} ${style.form_gap}`}>
       <Form.Group>
         <Form.Label>Pesquisar</Form.Label>
-        <Form.Control placeholder='Digite o nome do paciente' onChange={searchBar.handleChange} name='name' />
+        <Form.Control placeholder='Digite o nome do paciente para pesquisar dentro do periodo selecionado' onChange={searchBar.handleChange} name='name' />
       </Form.Group>
       <Row className={style.form_gap}>
         <Form.Group as={Col}>
