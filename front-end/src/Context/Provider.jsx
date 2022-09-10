@@ -7,7 +7,7 @@ import getTotalValue from '../utils/getTotalValue';
 import getPartialValue from '../utils/getPartialValue';
 
 const innitStateSearchBar = {
-  name: '',
+  email: '',
   gt: new Date().toLocaleDateString('en-CA'),
   lt: new Date(new Date().getFullYear(), 11, 31).toLocaleDateString('en-CA'),
 };

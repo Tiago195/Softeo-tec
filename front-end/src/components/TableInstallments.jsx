@@ -5,11 +5,10 @@ import formaterCurrency from '../utils/formaterCurrency';
 
 export default function TableInstallments() {
   const { user, searchBar: { state }, infoModal, setInstallment } = useContext(contextGlobal);
-  const data = user.filter(el => el.name.toLowerCase().includes(state.name.toLowerCase()));
+  const data = user.filter(el => el.email.toLowerCase().includes(state.email.toLowerCase()));
 
   const openModal = (installmentId, userId) => {
     infoModal.setIsViewModalInfo(true);
-    // setInstallmentId({ installmentId, userId });
     const targetUser = user.find(el => el.id === userId);
     const target = targetUser?.installments.find(el => el.id === installmentId);
     const installment = { ...target, name: targetUser.name, phoneNumber: targetUser.phoneNumber, email: targetUser.email };
