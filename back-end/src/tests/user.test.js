@@ -28,6 +28,7 @@ describe('Testes de integração na rota de usuários', () => {
 
     before(() => {
       sinon.stub(User, 'create').callsFake(userMock.create);
+      sinon.stub(User, 'findOne').returns(false);
     });
 
     after(() => {
@@ -36,6 +37,7 @@ describe('Testes de integração na rota de usuários', () => {
 
     it('Caso de sucesso', async () => {
       users = await chai.request(app).post(url).send(newValidUser);
+
       expect(users.body).to.be.eql({ ...newValidUser, id: 3 });
       expect(users).to.be.status(200);
     });
