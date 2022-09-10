@@ -1,7 +1,8 @@
 import axios from 'axios';
-//https://softeo-api-123.herokuapp.com
+import 'dotenv/config';
+
 const instance = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001',
 });
 
 export default instance;
