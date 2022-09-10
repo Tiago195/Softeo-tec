@@ -45,7 +45,7 @@ export default function ModalAddCliente({ type = 'user' }) {
   const { modal, searchBar, user } = useContext(contextGlobal);
   const [userId, setUserId] = useState(user[0]?.id || 1);
 
-  const submit = async (values) => {
+  const submit = async (values, { resetForm }) => {
     const payload = type === 'user' ? values : {
       userId,
       totalValue: values.totalValue,
@@ -54,6 +54,8 @@ export default function ModalAddCliente({ type = 'user' }) {
     };
     await instance.post(`/${type}/create`, payload);
     await searchBar.getAllUser();
+
+    resetForm();
     modal.setIsViewModal(!modal.isViewModal);
   };
 
@@ -73,7 +75,7 @@ export default function ModalAddCliente({ type = 'user' }) {
         values,
         errors,
       }) => (
-        <Form noValidate onSubmit={handleSubmit} onReset={handleReset} className={`${style.form_container} ${style.form_gap}`}>
+        <Form noValidate onSubmit={handleSubmit} className={`${style.form_container} ${style.form_gap}`}>
           {
             type === 'user' ?
               (
@@ -143,8 +145,9 @@ export default function ModalAddCliente({ type = 'user' }) {
             </Button>
           </Row>
         </Form>
-      )}
-    </Formik>
+      )
+      }
+    </Formik >
 
   );
 }
