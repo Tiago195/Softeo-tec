@@ -12,11 +12,14 @@ jobs:
         with:
           node-version: 16.16
 
-      - name: instalando dependências
+      - name: instalando dependências do back
         run: npm i ./back-end
 
       - name: executando o lint para verificar os erros do back
         run: npx eslint ./back-end
+
+      - name: instalando dependências do front
+        run: npm i ./front-end
 
       - name: executando o lint para verificar os erros do front
         run: npm eslint ./front-end
