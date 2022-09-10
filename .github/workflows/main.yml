@@ -22,7 +22,7 @@ jobs:
         run: npm i ./front-end
 
       - name: executando o lint para verificar os erros do front
-        run: npm eslint ./front-end
+        run: npx eslint ./front-end
         
       - name: executando testes de integração do back-end
         run: npm run test:back-end
